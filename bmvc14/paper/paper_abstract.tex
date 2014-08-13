@@ -1,0 +1,84 @@
+\documentclass[extendedabs]{bmvc2k}
+\usepackage[]{graphicx}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\usepackage{url}
+\captionsetup[subfigure]{labelformat=empty}  % remove (a),(b) etc subfloat labels
+
+\title{Recognizing Image Style: Extended Abstract}
+\input{../authors}
+
+\begin{document}
+\maketitle
+
+\noindent
+Deliberately-created images convey meaning, and \textit{visual style} is often a significant component of image meaning.
+For example, a political candidate portrait made in the lush colors of a Renoir painting tells a different story than if it were in the harsh, dark tones of a horror movie.
+While understanding style is crucial to image understanding, very little research in computer vision has explored visual style.
+
+We present two novel datasets of image style, describe an approach to predicting style of images, and perform a thorough evaluation of different image features for these tasks.
+We find that features learned in a multi-layer network generally perform best -- even when trained with object class (not style) labels.
+Our approach shows excellent classification performance on both datasets, and we use the learned classifiers to extend traditional tag-based image search to consider stylistic constraints.
+
+%%%
+\newcommand{\wid}{.7in}
+\newcommand{\fgap}{.57in}
+\newcommand{\dgap}{.42in}
+
+\paragraph{Flickr Style}
+Using curated Flickr Groups, we gather 80K photographs annotated with 20 style labels, ranging from photographic techniques  (``Macro,'' ``HDR''), composition styles (``Minimal,'' ``Geometric''), moods (``Serene,'' ``Melancholy''), genres (``Vintage,'' ``Romantic,'' ``Horror''), to types of scenes (``Hazy,'' ``Sunny'').
+
+Top five predictions on the test set for a selection of styles:
+
+\vspace{.666em}\input{../flickr_on_flickr_mini_abstract}
+
+%%%
+\paragraph{Wikipaintings}
+Using community-annotated data, we gather 85K\\
+paintings annotated with 25 style/genre labels.
+
+Top five predictions on the test set for a selection of styles:
+
+\vspace{.666em}\input{../wp_on_wp_mini_abstract}
+
+\newpage
+
+%%%
+\paragraph{Features and Learning}
+We test the following features: \textbf{L*a*b color} histogram, \textbf{GIST} descriptor, Graph-based \textbf{visual saliency}, Meta-class binary (\textbf{MC-bit}) object features, and deep convolutional neural networks (CNN), using the Caffe implementation of Krizhevsky's ImageNet architeture (referred to as the \textbf{DeCAF} feature, with subscript denoting network layer).
+Notably, the last two of these are features designed and trained for object recognition.
+
+As we hypothesize that style features may be content dependent, we also train \textbf{Content} classifiers using the CNN features and an aggregated version of the PASCAL VOC dataset, and use them in second-stage fusion with other features.
+
+%%%
+\paragraph{Evaluation}
+Mean APs on three datasets for the considered single-channel features and their second-stage combination.
+Only the clearly superior features are evaluated on the Flickr and Wikipaintings datasets.
+
+{\footnotesize \input{../mean_aps_table_abstract}}
+
+\vspace{.666em}
+We compare our predictors to human observers, using Amazon Mechanical Turk experiments, and find that our classifiers predict Group membership at essentially the same level of accuracy as Turkers.
+We also test on the AVA aesthetic prediction task, and show that using the ``deep'' object recognition features improves over state-of-the-art results.
+
+\paragraph{Applications}
+Example of filtering image search results by style.
+Our Flickr Style classifiers are applied to images found on Pinterest.
+The images are searched by the text contents of their captions, then filtered by the response of the style classifiers.
+Here we show top five results for the query ``Dress.''
+
+\input{../flickr_on_pinterest_abstract}
+
+\paragraph{Code \& Data}
+All data, trained predictors, and code are available at\\
+{\small \url{http://sergeykarayev.com/recognizing-image-style/}}.
+
+\end{document}

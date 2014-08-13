@@ -1,0 +1,17 @@
+# Latex crap
+*.aux
+*.bbl
+*.blg
+*.brf
+*.tcp
+*.lof
+*.lot
+*.toc
+*.synctex.gz
+
+# Compiled papers
+paper.pdf
+paper_abstract.pdf
+
+# Slides are shared through dropbox, too big
+slides

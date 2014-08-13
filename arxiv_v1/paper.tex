@@ -1,0 +1,71 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+\pdfoutput=1
+\usepackage[]{graphicx}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{subfig}
+% Include other packages here, before hyperref.
+
+\usepackage{booktabs}
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref  }
+
+\graphicspath{{figures/flickrDatasetExamples/}{figures/wikipaintingsDatasetExamples/}}
+
+\captionsetup[subfigure]{labelformat=empty}  % remove (a),(b) etc subfloat labels
+
+%% Define own commands
+\newcommand\todo[1]{\textcolor{BrickRed}{todo: #1}}
+\newcommand\aaron[1]{\textcolor{BrickRed}{\bf[aaron: #1]}}
+\newcommand\aseem[1]{\textcolor{BrickRed}{aseem: #1}}
+\newcommand\holger[1]{\textcolor{Cerulean}{holger: #1}}
+\newcommand{\fakebox}[2]{% #1 = width, #2 = height
+  {\fboxsep=-\fboxrule\fbox{\rule{0pt}{#2}\rule{#1}{0pt}}}}
+\newcommand{\samplewidth}{1in}
+
+\cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{1055} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+% TODO: for CVPR, make sure this line is not commented.
+%\ifcvprfinal\pagestyle{empty}\fi
+\begin{document}
+
+\title{
+Recognizing Image Style\\
+\large{Tech Report}
+}
+
+ \author{Sergey Karayev$^{1,2}$~~~~Aaron Hertzmann$^{3}$~~~~Holger Winnem\"{o}ller$^{3}$~~~~Aseem Agarwala$^{3}$~~~~Trevor Darrel$^{1,2}$\vspace{.4em}\\
+$^1$\,UC Berkeley, $^2$\,ICSI, and $^3$\,Adobe\\
+% {\tt\small \{sergeyk,trevor\}@eecs.berkeley.edu}\\
+% {\tt\small \{hertzman,hwinnemo,asagarwa\}@adobe.com}
+}
+
+\maketitle
+%\thispagestyle{empty}
+
+\begin{abstract}
+The style of an image plays a significant role in how it is viewed, but has received little attention in computer vision research.
+We describe an approach to predicting style of images, and perform a thorough evaluation of different image features for these tasks.
+We find that features learned in a multi-layer network generally perform best -- even when trained with object class (not style) labels.
+Our large-scale learning methods results in the best published performance on an existing dataset of aesthetic ratings and photographic style annotations.
+We present two novel datasets: 55K Flickr photographs annotated with curated style labels as well as free-form tags, and 85K paintings annotated with style and genre labels.
+Our approach shows excellent classification performance on both datasets.
+We use the learned classifiers to extend traditional tag-based image search to consider stylistic constraints, and demonstrate cross-dataset understanding of style.
+\end{abstract}
+
+\input{contents}
+
+\end{document}

@@ -1,0 +1,14 @@
+%!TEX root = paper/paper.tex
+\section{Learning algorithm}
+
+We learn to classify novel images according to their style, using the labels assembled in the previous section.
+Because the datasets we deal with are quite large and some of the features are high-dimensional, we consider only linear classifiers, relying on sophisticated features to provide robustiness.
+
+We use an open-source implementation of Stochastic Gradient Descent with adaptive subgradient \cite{Agarwal-JMLR-2012}.
+The learning process optimizes the function \[
+\underset{w}{\text{min }} \lambda_1 \|w\|_1 + \frac{\lambda_2}{2} \Vert w \Vert_2^2 + \sum_i \ell(x_i, y_i, w)
+\]
+We set the $L_1$ and $L_2$ regularization parameters and the form of the loss function by validation on a held-out set.
+For the loss $\ell(x, y, w)$, we consider the hinge ($\max(0, 1 - y \cdot w^T x)$) and logistic ($\log(1 + \exp(-y \cdot w^T x))$) functions.
+We set the initial learning rate to $0.5$, and use adaptive subgradient optimization~\cite{duchi2011adaptive}.
+Our setup is of multi-class classification; we use the One vs. All reduction to binary classifiers.

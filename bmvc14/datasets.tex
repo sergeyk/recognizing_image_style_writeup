@@ -1,0 +1,44 @@
+%!TEX root = paper/paper.tex
+\section{Data Sources}
+
+Building an effective model of photographic style requires annotated training data.  To our knowledge, there is only one existing dataset annotated with visual style, and only a narrow range of photographic styles is represented~\cite{Murray-CVPR-2012}.
+We would like to study a broader range of styles, including different \textit{types} of styles ranging from genres, compositional styles, and moods.
+Morever, large datasets are desirable in order to obtain effective results, and so we would like to obtain data from online communities, such as Flickr.
+%We would like to gather data from a rich source, such as Flickr, so that the size of our dataset can be increased with minimal effort.
+
+\paragraph{Flickr Style.}
+Although Flickr users often provide free-form tags for their uploaded images, the tags tend to be quite unreliable.
+Instead, we turn to Flickr groups, which are community-curated collections of visual concepts.
+For example, the Flickr Group ``Geometry Beauty'' is described, in part, as ``Circles, triangles, rectangles, symmetric objects, repeated patterns'', and contains over 167K images at time of writing; the ``Film Noir Mood'' group is described as ``Not just  black and white photography, but a dark, gritty, moody feel...'' and comprises over 7K images.
+
+At the outset, we decided on a set of 20 visual styles, further categorized into types:
+\begin{itemize}
+\setlength{\itemsep}{-.5em}
+\item \textbf{Optical techniques:} Macro, Bokeh, Depth-of-Field, Long Exposure, HDR
+\item \textbf{Atmosphere:} Hazy, Sunny
+\item \textbf{Mood:} Serene, Melancholy, Ethereal
+\item \textbf{Composition styles:} Minimal, Geometric, Detailed, Texture
+\item \textbf{Color:} Pastel, Bright
+\item \textbf{Genre:} Noir, Vintage, Romantic, Horror
+\end{itemize}
+
+For each of these stylistic concepts, we found at least one dedicated Flickr Group with clearly defined membership rules.
+From these groups, we collected 4,000 positive examples for each label, for a total of 80,000 images.
+Example images are shown in \autoref{fig:flickr_style_examples}.
+The exact Flickr groups used are given in the Supplementary Materials.
+
+The derived labels are considered clean in the positive examples, but may be noisy in the negative examples, in the same way as the ImageNet dataset \cite{Deng-CVPR-2009}.
+That is, a picture labeled as \emph{Sunny} is indeed \emph{Sunny}, but it may also be \emph{Romantic}, for which it is not labeled.
+We consider this an unfortunate but acceptable reality of working with a large-scale dataset.
+Following ImageNet, we still treat the absence of a label as indication that the image is a negative example for that label.
+Mechanical Turk experiments described in \autoref{sec:mech_turk_evaluation} serve to allay our concerns.
+
+\paragraph{Wikipaintings.}
+We also provide a new dataset for classifying painting style.
+To our knowledge, no previous large-scale dataset exists for this task -- although very recently a large dataset of artwork did appear for other tasks \cite{Mensink2014}.
+We collect a dataset of 100,000 high-art images -- mostly paintings -- labeled with artist, style, genre, date, and free-form tag information by a community of experts on the \texttt{Wikipaintings.org} website.
+
+Analyzing style of non-photorealistic media is an interesting problem, as much of our present understanding of visual style arises out of thousands of years of developments in fine art, marked by distinct historical styles.
+Our dataset presents significant stylistic diversity, primarily spanning Renaissance styles to modern art movements (Supplementary Materials provides further breakdowns).
+We select 25 styles with more than 1,000 examples, for a total of 85,000 images.
+Example images are shown in~\autoref{fig:wikipaintings_style_examples}.

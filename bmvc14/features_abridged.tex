@@ -1,0 +1,19 @@
+\paragraph{Features.}
+To effectively classify diverse visual styles, we must choose appropriate image features.
+At the outset of this work, we hypothesized that image style may be related to many different types of features, including low-level statistics \cite{Lyu-PNAS-2004}, color choices, composition, and content.  In particular, color palette seems to be a distinctive feature of many styles: for example, \emph{Noir} images are nearly all black-and-white, while most \emph{Horror} images are very dark, and \emph{Vintage} images use old photographic colors.  However,
+that image content could be predictive of individual styles, e.g., \emph{Macro} images include many images of insects and flowers.
+ Hence, we test features that embody these different elements, including features from the object recognition literature.
+
+ We test the following features; full details are given in the Supplemental Materials.
+\textbf{L*a*b color histogram,} using Palermo et al.'s representation \cite{Palermo-ECCV-2012};
+\textbf{GIST descriptor \cite{Oliva-IJCV-2001} };
+\textbf{Graph-based visual saliency \cite{Harel-NIPS-2006}};
+\textbf{Meta-class (MC) binary object features \cite{Bergamo-CVPR-2012}}; and
+\textbf{Deep convolutional neural networks (CNN)}, using the Caffe \cite{Jia13caffe} implementation of Krizhevsky's ImageNet-trained classifier \cite{krizhevsky2012imagenet} (henceforth referred to as the \textbf{DeCAF} feature, with subscript denoting network layer).
+Notably, the last two of these are features designed and trained for object recognition.
+
+For all features except binary ones, values are standardized: each column has its mean subtracted, and is divided by its standard deviation.
+For feature combinations, we use two-stage late fusion.
+First, single-feature classifiers are trained, then their scores are linearly combined with weights learned by a second classifier.
+
+As we hypothesize that style features may be content dependent, we also trained \textbf{Content classifiers} (following Dhar et al.~\cite{Dhar-CVPR-2011}) using the CNN features and an aggregated version of the PASCAL VOC \cite{pascal-voc-2010} dataset. To enable our style classifiers to learn content-dependent style, we take the outer product of a feature channel with the aggregate content classifiers in doing feature combination.

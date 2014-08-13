@@ -1,0 +1,47 @@
+
+\section{Related Work}
+
+%\paragraph{Beauty, interestingness, memorability.}
+Most research in computer vision addresses recognition and reconstruction, independent of image style.  A few previous works have focused directly on image composition, particularly on the high-level attributes of beauty, interestingness, and memorability.
+
+The groundwork for predicting aesthetic rating of photographs was laid by Datta et al.~\cite{Datta-ECCV-2006}, who designed visual features to represent concepts such as colorfulness, saturation, rule-of-thirds, and depth of field.
+Classifiers based on these features were evaluated on a dataset of photographs rated for aesthetics and originality by users of the \texttt{photo.net} community.
+The same approach was further applied to a small set of Impressionist paintings~\cite{Li-SP-2009}.
+
+The feature space was expanded with more high-level descriptive features such as ``presence of animals'' and ``opposing colors'' by Dhar et al., who also attempted to predict Flickr's proprietary ``interestingness'' measure, which is determined by social activity on the website~\cite{Dhar-CVPR-2011}.
+Their high-level features were themselves trained in a classification framework on labeled datasets.
+Gygli et al.~\cite{Gygli-ICCV-2013} gathered and predicted human evaluation of image interestingness, building on work by Isola et al.~\cite{Isola-CVPR-2011}, who used various high-level features to predict human judgements of image memorability.
+
+Murray et al.~\cite{Murray-CVPR-2012} introduced the Aesthetic Visual Analysis (AVA) dataset, annotated with ratings by users of DPChallenge, a photographic skill competition website.
+This dataset is primarily aimed at predicting beauty, and Murray et al.~showed that generic feature descriptors with state-of-the-art coding gave better predictions than the previously-used hand-designed features.
+Our use of ``deep-network'' features trained on a large amount of visual data is informed by their findings.
+
+The AVA dataset contains some photographic style labels (e.g., ``Duotones," ``HDR"), derived from the titles and descriptions of the photographic challenges to which photos were submitted. These style labels primarily reflect photographic techniques such as ``HDR" and simple compositional qualities like ``Duotones.''
+Using images from this dataset, Marchesotti and Peronnin~\cite{Marchesotti-BMVC-2013} gathered bi-grams from user comments on the website, and used a simple sparse feature selection method to find ones predictive of aesthetic rating.
+The attributes they found to be informative (e.g., ``lovely photo," ``nice detail") are not specific to image style.
+
+In contrast to their unsupervised learning approach, we gather annotations of style that are supervised, either by membership in a user-curated Flickr group, or by art historian experts.
+We are unaware of other previous work gathering annotations of image style.
+
+In a task similar to predicting the style of an image, Borth et al.~\cite{Borth-MM-2013} performed sentiment analysis on images.
+Following the ``ObjectBank''~\cite{Li-NIPS-2010} approach, the authors trained and deployed object detectors trained on data labeled with adjective-noun pairs of known sentiment value to predict the sentiment for the entire image.
+
+Features based on image statistics have been successfully employed to detect artistic forgeries, e.g.,~\cite{Lyu-PNAS-2004}.
+Their work focused on extremely fine-scale discrimination between two very similar classes, and has not been applied to broader style classification.
+
+\todo{integrate the following reference}
+
+\cite{Taylor-ICML-2009} use a Restricted Boltzmann Machine to separately consider style and content for the problem of human gait recognition.
+
+%\paragraph{Image attributes \& style}
+%Style can be considered an attribute of an image, as it is one of several things to be said about it.
+
+%\paragraph{Sentiment analysis}
+%An early contribution from the field of ``affective computing'' was a system for filtering images based on affective (emotional) content \cite{Bianchi-Berthouze-2003}.
+%Recently, a dataset of Flickr images tagged with adjective-noun pairings with known affective content was gathered to train ``sentiment detectors'' \cite{Borth-MM-2013} perform sentiment analysis on images. Their method is entirely based on object detection, not style.
+%The authors provide a challenge task of images posted on Twitter with associated sentiment labels as targets of prediction.
+
+% \paragraph{Style transfer}
+% Style transfer is usually done from image to image, not from concept to image.
+% For example, color styles learned from feature films have been transferred to new images \cite{Xue-PG-2013}.
+% One exception is recent work on ``image re-emotionalizing'', which uses an image dataset annotated with eight emotions to construct a generative color model \cite{Jin-2013}.

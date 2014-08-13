@@ -1,0 +1,87 @@
+\documentclass{bmvc2k}
+
+% Any macro definitions you would like to include
+% These are not defined in the style file, because they don't begin
+% with \bmva, so they might conflict with the user's own macros.
+% The \bmvaOneDot macro adds a full stop unless there is one in the
+% text already.
+\def\eg{\emph{e.g}\bmvaOneDot}
+\def\Eg{\emph{E.g}\bmvaOneDot}
+\def\etal{\emph{et al}\bmvaOneDot}
+
+\usepackage[]{graphicx}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{booktabs}
+\captionsetup[subfigure]{labelformat=empty}  % remove (a),(b) etc subfloat labels
+
+\newcommand\todo[1]{\textcolor{red}{todo: #1}}
+\newcommand\aaron[1]{\textcolor{red}{\bf[Aa: #1]}}
+\newcommand\aseem[1]{\textcolor{BrickRed}{aseem: #1}}
+\newcommand\holger[1]{\textcolor{Cerulean}{holger: #1}}
+\newcommand{\fakebox}[2]{% #1 = width, #2 = height
+  {\fboxsep=-\fboxrule\fbox{\rule{0pt}{#2}\rule{#1}{0pt}}}}
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+\begin{document}
+
+%%%
+% BMVC submission: Title, Abstract, Main
+% BMVC supplementary materials: Title_Supp, TOC, Supp
+% arXiv submission: Title, Abstract, Main, Supp
+\newif\ifsupp
+\suppfalse  % CHANGE ME
+
+% Title
+\ifsupp
+    \title{Recognizing Image Style: Supplementary Materials}
+    \runninghead{Karayev et al.}{Recognizing Image Style: Supplementary}
+\else
+    \title{Recognizing Image Style}
+    \runninghead{Karayev et al.}{Recognizing Image Style}
+\fi
+\input{../authors.tex}
+\maketitle
+
+\ifsupp
+    \listoffigures
+    \listoftables
+\else
+    \begin{abstract}
+    \input{../abstract}
+    \end{abstract}
+
+    \input{../introduction}
+    \input{../related_work}
+    \input{../datasets}
+    \input{../learning}
+    \input{../features}
+    \input{../evaluation}
+    \input{../applications}
+    \input{../conclusion}
+
+    {\footnotesize
+    \bibsep=3pt
+    \bibliography{../../mendeley_bibtex_edited}
+    }
+\fi
+
+% Supp
+\ifsupp
+    \input{../mturk_details}
+    \input{../flickr_on_flickr}
+    \input{../flickr_groups}
+    \input{../wikipaintings_stats}
+    \input{../clf_metrics}
+\fi
+
+%%%
+
+\end{document}

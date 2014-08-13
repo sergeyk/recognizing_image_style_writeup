@@ -1,0 +1,100 @@
+\begin{table*}[h!]
+\caption{
+    All per-class APs on all evaluated features on the AVA Style dataset.
+}\label{tab:ava_style_ap_table}
+\vspace{1em}
+\centering
+\small{
+\input{../ava_style_ap_table}
+}
+\end{table*}
+
+\begin{table*}[h!]
+\caption{
+    All per-class APs on all evaluated features on the Flickr dataset.
+}\label{tab:flickr_ap_table}
+\vspace{1em}
+\centering
+\input{../flickr_ap_table}
+\end{table*}
+
+\begin{table*}[h!]
+\centering
+\caption{
+    All per-class APs on all evaluated features on the Wikipaintings dataset.
+}\label{tab:wikipaintings_ap_table}
+\vspace{1em}
+\input{../wikipaintings_ap_table}
+\end{table*}
+
+\begin{table*}[h!]
+\caption
+[Comparison of Flickr Style per-class accuracies for our method and Mech Turkers.]
+{
+Comparison of Flickr Style per-class accuracies for our method and Mech Turkers.
+We first give the full results table, then show the signficant deviations between human and machine performance, and between using Flickr and MTurk ground truth.
+}\label{tab:flickr_vs_mturk}
+\vspace{1em}
+\centering
+\small{
+\input{../flickr_vs_mturk}
+}
+\end{table*}
+
+\begin{table*}
+\caption{
+    Per-class accuracies on the Wikipaintings dataset, using the MC-bit feature.
+}\label{tab:wp_accuracies}
+\vspace{1em}
+\centering
+\begin{tabular}{lrlr}
+\toprule
+\textbf{Style} & \textbf{Accuracy} & \textbf{Style} & \textbf{Accuracy} \\
+\midrule
+Symbolism                    &         71.24 & Impressionism                &         82.15 \\
+Expressionism                &         72.03 & Northern Renaissance         &         82.32 \\
+Art Nouveau (Modern)         &         72.77 & High Renaissance             &         82.90 \\
+Nave Art (Primitivism)       &         72.95 & Mannerism (Late Renaissance) &         83.04 \\
+Surrealism                   &         74.44 & Pop Art                      &         83.33 \\
+Post-Impressionism           &         74.51 & Early Renaissance            &         84.69 \\
+Romanticism                  &         75.86 & Abstract Art                 &         85.10 \\
+Realism                      &         75.88 & Cubism                       &         86.85 \\
+Magic Realism                &         78.54 & Rococo                       &         87.33 \\
+Neoclassicism                &         80.18 & Ukiyo-e                      &         93.18 \\
+Abstract Expressionism       &         81.25 & Minimalism                   &         94.21 \\
+Baroque                      &         81.45 & Color Field Painting         &         95.58 \\
+Art Informel                 &         82.09 &                              &               \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[width=\linewidth]{../../figures/evaluation/ava_style_conf.pdf}
+\caption
+[Confusion matrix of our best classifier on the AVA Style dataset.]
+{
+Confusion matrix of our best classifier (\mbox{Late-fusion $\times$ Content}) on the AVA Style dataset.
+The right-most ``prior'' column reflects the distribution of ground-truth labels in the test set.
+The confusions are mostly understandable: ``Soft Focus'' vs. ``Motion Blur'' for example.
+}
+\label{fig:ava_style_conf}
+\end{figure*}
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[width=1\linewidth]{../../figures/evaluation/flickr_conf.pdf}
+\caption
+[Confusion matrix of our best classifier on the Flickr dataset.]
+{Confusion matrix of our best classifier (\mbox{Late-fusion $\times$ Content}) on the Flickr dataset.}
+\label{fig:flickr_conf}
+\end{figure*}
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[width=1\linewidth]{../../figures/evaluation/wikipaintings_conf.pdf}
+\caption
+[Confusion matrix of our best classifier on the Wikipaintings dataset.]
+{Confusion matrix of our best classifier (\mbox{Late-fusion $\times$ Content}) on the Wikipaintings dataset.}
+\label{fig:wp_conf}
+\end{figure*}

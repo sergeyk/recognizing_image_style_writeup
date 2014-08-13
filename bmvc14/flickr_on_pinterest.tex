@@ -1,0 +1,60 @@
+\newcommand{\dgap}{.42in}
+\begin{figure}
+\begin{subfigure}[t]{0.48\linewidth}
+    \begin{tabular}{m{.02in}|m{\dgap} m{\dgap} m{\dgap}}
+    \begin{turn}{90}\small{Bright}\end{turn} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Bright/h/0.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Bright/h/1.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Bright/h/2.jpg} \\ \\
+    \begin{turn}{90}\small{Pastel}\end{turn} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Pastel/h/0.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Pastel/h/1.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Pastel/h/2.jpg} \\ \\
+    \begin{turn}{90}\small{Ethereal}\end{turn} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Ethereal/h/0.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Ethereal/h/1.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Ethereal/h/2.jpg} \\ \\
+    \begin{turn}{90}\small{Noir}\end{turn} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Noir/h/0.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Noir/h/1.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/dress/pred_style_Noir/h/2.jpg} \\ \\
+    \begin{turn}{90}\small{Vintage}\end{turn} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Vintage/h/0.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Vintage/h/2.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Vintage/h/3.jpg} \\
+    \end{tabular}
+    \caption{Query: ``dress''.}
+\end{subfigure}\hfill%
+\begin{subfigure}[t]{0.48\linewidth}
+    \begin{tabular}{m{.02in}|m{\dgap} m{\dgap} m{\dgap}}
+    \begin{turn}{90}\small{DoF}\end{turn} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Depth_of_Field/h/1.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Depth_of_Field/h/3.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Depth_of_Field/h/4.jpg} \\ \\
+    \begin{turn}{90}\small{Romantic}\end{turn} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Romantic/h/0.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Romantic/h/1.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Romantic/h/3.jpg} \\ \\
+    \begin{turn}{90}\small{Sunny}\end{turn} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Sunny/h/0.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Sunny/h/1.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Sunny/h/2.jpg} \\ \\
+    \begin{turn}{90}\small{Geometric}\end{turn} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Geometric_Composition/h/0.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Geometric_Composition/h/1.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Geometric_Composition/h/4.jpg} \\ \\
+    \begin{turn}{90}\small{Serene}\end{turn} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Serene/h/0.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Serene/h/2.jpg} &
+    \includegraphics[width=.53in]{../../figures/flickr_on_pinterest/flower/pred_style_Serene/h/3.jpg} \\
+    \end{tabular}
+    \caption{Query: ``flower''.}
+\end{subfigure}
+\\
+\caption{
+    Example of filtering image search results by style.
+    Our Flickr Style classifiers are applied to images found on Pinterest.
+    The images are searched by the text contents of their captions, then filtered by the response of the style classifiers.
+    Here we show three out of top five results for different query/style combinations.
+}\label{fig:flickr_on_pinterest}
+\end{figure}

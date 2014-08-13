@@ -1,0 +1,27 @@
+
+\section{Conclusion}
+
+We have described datasets and algorithms for classifying image styles.  Given the importance of style in modern visual communication, we believe that understanding style is an important challenge for computer vision, and our results illustrate the potential for future research in this area.
+
+One challenging question is to define and understand the meaning of style.  Different types of styles relate to content, color, lighting, composition, and other factors.  Our work provides some preliminary evidence about the relationships of these quantities.  %Other important questions include the degree of per-user agreement on
+
+We were suprised by the success of the DeCAF convolution net, which was originally trained for object recognition. Moreover, fine-tuning it for style did not significantly increase performance.
+Perhaps the network layers that we use as features are extremely good as general visual features for image representation in general. Another explanation is that object recogntion depends on object appearance, e.g., distinguishing red from white wine, or different kinds of terriers, and that the model learns to repurpose these feature for image style.
+%This possibility is partially supported by experiments with the DeCAF feature~\cite{Donahue2013}.
+
+Another possibility is that the style labels can be predicted from object content alone.  We do see strong correlations in our data, e.g., \emph{Macro} images frequently depict birds and flowers.%are highly correlated to object category content.
+%Can content be enough to classify style?
+However, we found that using 1,000 ImageNet classifiers as a features
+was significantly worse than
+% in Flickr Style and Wikipaintings experiments, and find that their performance is far below
+the performance of the DeCAF$_6$ layer feature
+% (see Supplemental Materials).
+(see Tables \ref{tab:ava_style_aps}, \ref{tab:flickr_aps}, \ref{tab:wikipaintings_aps}).
+
+%An open question is the level of individual agreement on the definition of style.
+%We operationalized our tasks as predicting Flickr group membership and Wikipaintings expert-given style labels.
+%But even though a given photograph is in the \emph{Horror} group, a given invidual may not consider it to represent the \emph{Horror} style. %, which is our ultimate objective.
+%A user study would be useful to determine the level of between-subjects agreement.
+
+%We note that all features used are ``global,'' computed on the whole image.
+%A promising venue of further research is in the use of region-specific features or detectors for the task of predicting style.

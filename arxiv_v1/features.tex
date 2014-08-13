@@ -1,0 +1,47 @@
+
+\section{Image Features}
+
+In order to classify styles, we must choose appropriate image features.  We hypothesize that image style may be related to many different features, including low-level statistics \cite{Lyu-PNAS-2004}, color choices, composition, and content.  Hence, we test features that embody these different elements, including features from the object recognition literature.
+We evaluate single-feature performance, as well as second-stage fusion of multiple features.
+
+\vspace{-0.5em}
+\paragraph{L*a*b color histogram.}
+Many of the Flickr styles exhibit strong dependence on color. For example, \emph{Noir} images are nearly all black-and-white, while most \emph{Horror} images are very dark, and \emph{Vintage} images use old photographic colors. We use a standard color histogram feature, computed on the whole image.
+The 784-dimensional joint histogram in CIELAB color space has 4, 14, and 14 bins in the L*, a*, and b* channels, following Palermo et al.~\cite{Palermo-ECCV-2012}, who showed this to be the best performing single feature for determining the date of historical color images.
+
+\vspace{-0.5em}
+\paragraph{GIST.}
+The classic gist descriptor \cite{Oliva-IJCV-2001} is known to perform well for scene classification and retrieval of images visually similar at a low-resolution scale, and thus can represent image composition to some extent.
+We use the INRIA LEAR implementation, resizing images to 256 by 256 pixels and extracting a 960-dimensional color GIST feature.
+
+\vspace{-0.5em}
+\paragraph{Graph-based visual saliency.}
+We also model composition with a visual attention feature \cite{Harel-NIPS-2006}.
+The feature is fast to compute and has been shown to predict human fixations in natural images basically as well as an individual human (humans are far better in aggregate, however).
+The 1024-dimensional feature is computed from images resized to 256 by 256 pixels.
+
+\vspace{-0.5em}
+\paragraph{Meta-class binary features.}
+Image content can be predictive of individual styles, e.g., \emph{Macro} images include many images of insects and flowers. The \texttt{mc-bit} feature~\cite{Bergamo-CVPR-2012} is a 15,000-dimensional bit vector feature learned as a non-linear combination of classifiers trained using existing features (e.g., SIFT, GIST, Self-Similarity) on thousands of random ImageNet synsets, including internal ILSVRC2010 nodes.
+In essence, MC-bit is a hand-crafted ``deep'' architecture, stacking classifiers and pooling operations on top of lower-level features.
+
+\vspace{-0.5em}
+\paragraph{Deep convolutional net.}
+Current state-of-the-art results on ImageNet, the largest image classification challenge, have come from a deep convolutional network trained in a fully-supervised manner \cite{krizhevsky2012imagenet}.
+We use the Caffe \cite{Jia13caffe} open-source implementation of the ImageNet-winning eght-layer convolutional network, trained on over a million images annotated with 1,000 ImageNet classes.
+We investigate using features from two different levels of the network, referred to as DeCAF$_6$ and DeCAF$_7$ (following \cite{Donahue2013}).
+Both features are 4,000-dimensional and are close to the supervised signal, and are computed from images center-cropped and resized to 256 by 256 pixels.
+% Since DeCAF is trained on object recognition, not style recognition, we also test whether tuning the network for our style datasets improve performance.
+
+\vspace{-0.5em}
+\paragraph{Content classifiers.}
+Following Dhar et al.~\cite{Dhar-CVPR-2011}, who use high-level classifiers as features for their aesthetic rating prediction task, we evaluate using object classifier confidences as features.
+Specifically, we train classifiers for all 20 classes of the PASCAL VOC \cite{pascal-voc-2010} using the DeCAF$_6$ feature.
+The resulting classifiers are quite reliable, obtaining $0.7$ mean AP on the VOC 2012.
+
+We aggregate the data to train four classifiers for ``animals'', ``vehicles'', ``indoor objects'' and ``people''.
+These aggregate classes are presumed to discriminate between vastly different types of images -- types for which different style signals may apply.
+For example, a \emph{Romantic} scene with people may be largely about the composition of the scene, whereas, \emph{Romantic} scenes with vehicles may be largely described by color.
+%An example about predicting Romantic style: for a picture with people, scene composition may be key, but for a picture with vehicles, color scheme may be most important.
+
+To enable our classifiers to learn content-dependent style, we can take the outer product of a feature channel with the four aggregate content classifiers.

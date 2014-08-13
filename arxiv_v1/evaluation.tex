@@ -1,0 +1,133 @@
+
+\section{Evaluation}
+
+Details of our experiments follow, with a concluding discussion section.
+
+\begin{table*}
+\caption{
+    Mean APs (or accuracies, where noted) on three datasets for the considered single-channel features and their second-stage combination.
+    As some features were clearly dominated by others on the AVA dataset, only the better features were evaluated on larger datasets.
+}
+\label{tab:mean_aps}
+\centering
+\small{
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+{} &  Late-fusion &  DeCAF$_5$ &  DeCAF$_6$ &  MC-bit &  Tuned DC$_6$ &  L*a*b* Hist &  GIST &  Saliency &  random \\
+\midrule
+AVA Rating (acc.) &                  - &    0.779 &    0.686 &   0.843 &               0.720 &             0.574 & 0.558 &                 0.539 &   0.500 \\
+AVA Style             &                  0.604 &    0.427 &    0.577 &   0.529 &               0.552 &             0.291 & 0.220 &                 0.149 &   0.127 \\
+Flickr                &                  0.419 &    0.314 &    0.391 &   0.360 &               0.396 &                 - &     - &                     - &   0.066 \\
+Wikipaintings         &                  0.476 &        - &    0.356 &   0.443 &               0.356 &                 - &     - &                     - &   0.043 \\
+\bottomrule
+\end{tabular}
+}
+\end{table*}
+
+\subsection{AVA Style}
+
+We evaluate classification of aesthetic rating and of 14 different photographic style labels on the 14,000 images of the AVA dataset that have such labels.
+For the style labels, the publishers of the dataset provide a train/test split, where training images have only one label, but test images may have more than one label \cite{Murray-CVPR-2012}.
+Although the provided test split has an uneven class distribution, we found that to compare with the reported results, a class-balanced set is needed.
+
+Consequently, we adhere to the provided split but compute evaluation metrics on a random class-balanced subset of the test data.
+We use class-balanced data for evaluation in all following experiments.
+
+\vspace{-.5em}
+\paragraph{Metrics.}
+Following the established approach, aesthetic rating is classified in a binary prediction task of being below or above the mean.
+On this task, we report the accuracy of our predictions.
+
+For multi-class prediction of the style labels, we report the confusion matrix of most confident classifications for each image, top-K accuracies (useful to see when the dataset has easily confused labels), and per-class Average Precision (AP): area under the Precision vs.~Recall curve.
+% TODO: uncomment for camera ready
+% For space constraints, we do not include all of these plots and tables in the main body of the paper, but provide them in entirety in the supplemental materials.
+
+\vspace{-.5em}
+\paragraph{Results.}
+For all features, AP scores for the AVA Style dataset are shown in~\autoref{fig:ava_style_results}.
+The mean AP scores and the aesthetic rating accuracy are given in the overall results table~\autoref{tab:mean_aps}.
+
+For aesthetic rating performance, the best single feature is the MC-bit feature, obtaining 0.843 accuracy.
+Previous work did not report accuracy on this subset of the data, but their best reported accuracy on the test set of the full AVA data is 0.68 \cite{Murray-CVPR-2012}.
+For style classification, the best single feature is the DeCAF$_6$ convolution network feature, obtaining 0.577 mean AP.
+Feature fusion improves the result to 0.604 mean AP; both results beat the previous state-of-the-art of 0.538 mean AP \cite{Murray-CVPR-2012}.
+
+In all metrics, the DeCAF and MC-bit features significantly outperform the more low-level features.
+Accordingly, we do not evaluate the low-level features on the larger Flickr and Wikipaintings datasets.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{../arxiv/figures/evaluation/ava_style_ap_barplot.pdf}
+\caption{APs on the AVA Style dataset. }
+\label{fig:ava_style_results}
+\end{figure}
+
+\subsection{Flickr Style}
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{../arxiv/figures/evaluation/flickr_ap_barplot.pdf}
+\caption{APs on the Flickr dataset.}
+\label{fig:flickr_results}
+\end{figure}
+
+Following the same evaluation setup and metrics as above, we learn and predict style labels on the 53,000 images labeled with 18 different visual styles of our new Flickr Style dataset, using 20\% of the data for testing, and another 20\% for parameter tuning validation.
+Results are presented in Figures~\ref{fig:flickr_results} and \ref{fig:top_k}, and in~\autoref{tab:mean_aps}.
+
+The best single-channel feature is again DeCAF$_6$ with 0.396 mean AP; feature fusion obtains 0.419 mean AP.
+Surprisingly, fine-tuning the DeCAF convolution net with images from our datasets did not increase performance.
+
+\vspace{-.5em}
+\paragraph{Content correlations.}
+We plot the confusion matrix of this single-label dataset in~\autoref{fig:flickr_confusion}.
+As expected, there are points of understandable confusion: Depth of Field vs. Macro, Romantic vs. Pastel, Vintage vs. Melancholy.
+There are also surprising sources of mistakes: Macro vs. Bright/Energetic, for example.
+
+To explain this particular confusion, we observed that lots of Macro photos contain bright flowers, insects, or birds, often against vibrant greenery.
+Here, at least, the content of the image dominates its style label.
+
+To explore further content-style correlations, we plot the outputs of PASCAL object class classifiers (one of our features) on the Flickr dataset in~\autoref{fig:content_correlation}.
+We can observe that some styles have strong correlations to content (e.g. ``Hazy'' occurs with ``vehicle'', ``HDR'' doesn't occur with ``cat'').
+To further enable our linear classifier to take advantage of such correlations, we take an outer product of our content classifier features with the second-stage late fusion features (``Late-fusion $\times$ Content'' in all results figures).
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{../arxiv/figures/evaluation/flickr_conf.pdf}
+\caption{
+    Confusion matrix of our best classifier (\mbox{Late-fusion $\times$ Content}) on the Flickr dataset.
+}
+\label{fig:flickr_confusion}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.9\linewidth]{../arxiv/figures/content_correlation/pascal_on_flickr.pdf}
+\caption{
+    Correlation of PASCAL content classifers (columns) against ground truth Flickr style labels (rows).
+}
+\label{fig:content_correlation}
+\end{figure}
+
+\subsection{Wikipaintings}
+
+With the same setup and features as in the Flickr experiments, we evaluate 85,000 images labeled with 22 different art styles.
+The results are given in Figures~\ref{fig:wikipaintings_style_results} and \ref{fig:top_k}, and in~\autoref{tab:mean_aps}.
+The best single-channel feature is MC-bit with 0.444 mean AP; feature fusion obtains 0.476 mean AP.
+As with Flickr, fine-tuning the convolutional net feature did not increase its performance on this dataset.
+
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{../arxiv/figures/evaluation/wikipaintings_ap_barplot.pdf}
+\caption{APs on the Wikipaintings dataset.}
+\label{fig:wikipaintings_style_results}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=.45\linewidth]{../arxiv/figures/evaluation/flickr_top_k.pdf}
+\includegraphics[width=.45\linewidth]{../arxiv/figures/evaluation/wikipaintings_top_k.pdf}
+\caption{Top-K accuracies for the Flickr and Wikipaintings datasets, respectively. }
+\label{fig:top_k}
+\end{figure}
+
+\input{../arxiv/applications}

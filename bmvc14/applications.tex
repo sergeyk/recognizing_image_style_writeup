@@ -1,0 +1,27 @@
+%!TEX root = paper/paper.tex
+\subsection{Application: Style-Based Image Search}
+
+\input{../flickr_on_flickr_mini}
+
+Style classifiers learned on our datasets can be used toward novel goals.
+For example, sources of stock photography or design inspiration may be better navigated with a vocabulary of style.
+Currently, companies expend labor to manually annotate stock photography with such labels.
+With our approach, any image collection can be searchable and rankable by style.
+
+To demonstrate, we apply our Flickr-learned style classifiers to a new dataset of 80K images gathered on Pinterest (also available with our code release); some results are shown in \autoref{fig:flickr_on_pinterest}.
+Interestingly, styles learned from photographs can be used to order paintings, and styles learned from paintings can be used to order photographs, as illustrated in \autoref{fig:photo_painting}.
+
+\begin{figure*}[ht]
+\centering
+\includegraphics[width=.95\linewidth]{../../figures/style_by_style.pdf}
+\vspace{-1ex}
+\caption{
+    Cross-dataset style.
+    On the left are shown top scorers from the Wikipaintings set, for styles learned on the Flickr set.
+    On the right, Flickr photographs are accordingly sorted by Painting style.
+    (Figure best viewed in color.)
+}
+\label{fig:photo_painting}
+\end{figure*}
+
+\input{../flickr_on_pinterest}

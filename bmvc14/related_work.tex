@@ -1,0 +1,22 @@
+%!TEX root = paper/paper.tex
+\section{Related Work}
+
+Most research in computer vision addresses recognition and reconstruction, independent of image style.
+A few previous works have focused directly on image composition, particularly on the high-level attributes of beauty, interestingness, and memorability.
+
+Most commonly, several previous authors have described methods to predict aesthetic quality of photographs.
+Datta et al.~\cite{Datta-ECCV-2006}, designed visual features to represent concepts such as colorfulness, saturation, rule-of-thirds, and depth-of-field, and evaluated aesthetic rating predictions on photographs; The same approach was further applied to a small set of Impressionist paintings~\cite{Li-SP-2009}.
+The feature space was expanded with more high-level descriptive features such as ``presence of animals'' and ``opposing colors'' by Dhar et al., who also attempted to predict Flickr's proprietary ``interestingness'' measure, which is determined by social activity on the website~\cite{Dhar-CVPR-2011}.
+Gygli et al.~\cite{Gygli-ICCV-2013} gathered and predicted human evaluation of image interestingness, building on work by Isola et al.~\cite{Isola-CVPR-2011}, who used various high-level features to predict human judgements of image memorability.
+In a similar task, Borth et al.~\cite{Borth-MM-2013} performed sentiment analysis on images using object classifiers trained on adjective-noun pairs.
+% Gemert \cite{gemert2011} compares the similarity between two image compositions based on spatial pyramid similarity.
+
+Murray et al.~\cite{Murray-CVPR-2012} introduced the Aesthetic Visual Analysis (AVA) dataset, annotated with ratings by users of DPChallenge, a photographic skill competition website.
+The AVA dataset contains some photographic style labels (e.g., ``Duotones,'' ``HDR''), derived from the titles and descriptions of the photographic challenges to which photos were submitted.
+Using images from this dataset, Marchesotti and Peronnin~\cite{Marchesotti-BMVC-2013} gathered bi-grams from user comments on the website, and used a simple sparse feature selection method to find ones predictive of aesthetic rating.
+The attributes they found to be informative (e.g., ``lovely photo,'' ``nice detail'') are not specific to image style.
+
+Several previous authors have developed systems to classify classic painting styles, including \cite{keren2002,shamir2010}.
+These works consider only a handful of styles (less than ten apiece), with styles that are visually very distinct, e.g., Pollock vs.~Dal\'{\i}.
+These datasets comprise less than 60 images per style, for both testing and training.
+Mensink \cite{Mensink2014} provides a larger dataset of artworks, but does not consider style classification.

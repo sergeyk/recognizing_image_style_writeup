@@ -1,0 +1,73 @@
+\input{../arxiv/introduction}
+\input{../arxiv/related_work}
+\input{../arxiv/datasets}
+\input{../arxiv/features}
+\input{../arxiv/learning}
+\input{../arxiv/evaluation}
+\input{../arxiv/conclusion}
+
+\begin{figure*}[ht]
+\centering
+\includegraphics[width=.95\linewidth]{../arxiv/figures/style_by_style.pdf}
+\vspace{-1ex}
+\caption{
+    Cross-dataset style.
+    On the left are shown top scorers from the Wikipaintings set, for styles learned on the Flickr set.
+    On the right, Flickr photographs are accordingly sorted by Painting style.
+    (Figure best viewed in color.)
+}
+\label{fig:photo_painting}
+\end{figure*}
+
+\begin{figure*}[hb]
+\centering
+\includegraphics[width=.85\linewidth]{../arxiv/figures/birds_and_trains_by_style.pdf}
+\vspace{-1ex}
+\caption{
+Style-based search within the PASCAL dataset, showing the top 3 images with classifier ``bird" and ``train," in six Flickr styles and two Wikipaintings style.  Note that the PASCAL data includes only 773 bird images and 550 trains, and thus their stylistic range is limited.
+(Figure best viewed in color.)
+}
+\label{fig:search_demo}
+\end{figure*}
+
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{../arxiv/paper}
+}
+
+% For arXiv:
+\pagebreak
+\begin{table*}[h!]
+\caption
+[All per-class APs on all evaluated features on the AVA Style dataset.]
+{All per-class APs on all evaluated features on the AVA Style dataset.}
+\label{tab:ava_style_aps}
+\centering
+\small{
+\input{../arxiv/ava_style_ap_table}
+}
+\end{table*}
+
+\begin{table*}[h!]
+\caption
+[All per-class APs on all evaluated features on the Flickr dataset.]
+{All per-class APs on all evaluated features on the Flickr dataset.}
+\label{tab:flickr_aps}
+\centering
+\small{
+\input{../arxiv/flickr_ap_table}
+}
+\end{table*}
+
+\begin{table*}[h!]
+\centering
+\caption
+[All per-class APs on all evaluated features on the Wikipaintings dataset.]
+{All per-class APs on all evaluated features on the Wikipaintings dataset.}
+\label{tab:wikipaintings_aps}
+\small{
+\input{../arxiv/wikipaintings_ap_table}
+}
+\end{table*}
+\pagebreak
