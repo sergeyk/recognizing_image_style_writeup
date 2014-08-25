@@ -25,7 +25,8 @@ At the outset, we decided on a set of 20 visual styles, further categorized into
 For each of these stylistic concepts, we found at least one dedicated Flickr Group with clearly defined membership rules.
 From these groups, we collected 4,000 positive examples for each label, for a total of 80,000 images.
 Example images are shown in \autoref{fig:flickr_style_examples}.
-The exact Flickr groups used are given in the Supplementary Materials.
+% The exact Flickr groups used are given in the Supplementary Materials.
+The exact Flickr groups used are given in \autoref{tab:flickr_groups}.
 
 The derived labels are considered clean in the positive examples, but may be noisy in the negative examples, in the same way as the ImageNet dataset \cite{Deng-CVPR-2009}.
 That is, a picture labeled as \emph{Sunny} is indeed \emph{Sunny}, but it may also be \emph{Romantic}, for which it is not labeled.
@@ -39,6 +40,7 @@ To our knowledge, no previous large-scale dataset exists for this task -- althou
 We collect a dataset of 100,000 high-art images -- mostly paintings -- labeled with artist, style, genre, date, and free-form tag information by a community of experts on the \texttt{Wikipaintings.org} website.
 
 Analyzing style of non-photorealistic media is an interesting problem, as much of our present understanding of visual style arises out of thousands of years of developments in fine art, marked by distinct historical styles.
-Our dataset presents significant stylistic diversity, primarily spanning Renaissance styles to modern art movements (Supplementary Materials provides further breakdowns).
+% Our dataset presents significant stylistic diversity, primarily spanning Renaissance styles to modern art movements (Supplementary Materials provides further breakdowns).
+Our dataset presents significant stylistic diversity, primarily spanning Renaissance styles to modern art movements (\autoref{fig:wikipaintings_data} provides further breakdowns).
 We select 25 styles with more than 1,000 examples, for a total of 85,000 images.
 Example images are shown in~\autoref{fig:wikipaintings_style_examples}.
